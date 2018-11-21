@@ -12,8 +12,8 @@
 //#include <iostream.h>
 
 /**** constructeur ****/
-CTabView::CTabView(BRect frame, const char *name,button_width width, uint32 resizingMode, uint32 flags)
-: BTabView(frame,name,width,resizingMode,flags)
+CTabView::CTabView(const char *name, button_width width, uint32 flags)
+: BTabView(name,width,flags)
 {
 }
 

@@ -37,8 +37,8 @@ struct _special_block _special_block_info[] =
 };
 
 /**** constructeur ****/
-BeTrisFieldsView::BeTrisFieldsView(BRect frame, const char *name)
-: BView(frame, name, B_FOLLOW_ALL_SIDES, B_WILL_DRAW)
+BeTrisFieldsView::BeTrisFieldsView(const char *name)
+: BView(name, B_WILL_DRAW)
 {
 	// initialiser
 	_ppmm = 0;

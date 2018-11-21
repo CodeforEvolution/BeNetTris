@@ -20,7 +20,7 @@ class BBox;
 class BeTrisBlockFreqView : public BView
 {	
 public:
-	BeTrisBlockFreqView(BRect , const char *);
+	BeTrisBlockFreqView(const char *);
 	virtual ~BeTrisBlockFreqView();
 	
 	virtual void	AttachedToWindow();

@@ -30,8 +30,8 @@ const int8	U_OPEN_IMAGES		= 0;
 const int8	U_OPEN_SOUNDS		= 1;
 
 /**** constructeur ****/
-BeTrisSettingView::BeTrisSettingView(BRect frame, const char *name)
-: BView(frame, name, B_FOLLOW_ALL_SIDES, B_WILL_DRAW)
+BeTrisSettingView::BeTrisSettingView(const char *name)
+: BView(name, B_WILL_DRAW)
 {
 	// initialiser
 	_searchdirectory = NULL;

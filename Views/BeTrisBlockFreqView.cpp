@@ -3,10 +3,12 @@
 #include "CPreferenceFile.h"
 #include "BeTrisApp.h"
 
-#include <Box.h>
-#include <TextControl.h>
-#include <Button.h>
 #include <Bitmap.h>
+#include <Box.h>
+#include <Button.h>
+#include <LayoutBuilder.h>
+#include <TextControl.h>
+
 #include <stdio.h>
 
 // tableau des frequences
@@ -14,8 +16,8 @@ char	_block_freq_default[FREQ_BLOCK_NUMBER] = {15,15,14,14,14,14,14};
 char	_special_freq_default[FREQ_BLOCK_SPECIAL_NUMBER] = {19,16,3,14,3,14,6,11,14};
 
 /**** constructeur ****/
-BeTrisBlockFreqView::BeTrisBlockFreqView(BRect frame, const char *name)
-: BView(frame, name, B_FOLLOW_ALL_SIDES, B_WILL_DRAW)
+BeTrisBlockFreqView::BeTrisBlockFreqView(const char *name)
+: BView(name, B_WILL_DRAW)
 {
 	int	index = 0;
 
@@ -27,9 +29,9 @@ BeTrisBlockFreqView::BeTrisBlockFreqView(BRect frame, const char *name)
 	_offSpBlock = NULL;
 
 	/**** groupe pour la frequence des block speciaux ****/
-	_specialoccurancy = new BBox(BRect(10,10,305,465),"special-occurancy");	
+	_specialoccurancy = new BBox("special-occurancy");	
 	_specialoccurancy->SetLabel(" Special Block Occurancy ");
-	AddChild(_specialoccurancy);
+	//AddChild(_specialoccurancy);
 
 	// ajout des Controle pour saisir les frequences des block speciaux
 	_special_percent[0] = new BTextControl(BRect(50,40,250,50),"special-freq-1","Add Lines","",new BMessage(U_CHANGE_FREQ_SPECIAL));
@@ -46,29 +48,57 @@ BeTrisBlockFreqView::BeTrisBlockFreqView(BRect frame, const char *name)
 	for(index=0;index<FREQ_BLOCK_SPECIAL_NUMBER;index++)
 	{
 		_special_percent[index]->SetDivider(150);
-		_specialoccurancy->AddChild(_special_percent[index]);
+		//_specialoccurancy->AddChild(_special_percent[index]);
 	}
 	
 	/**** groupe pour la frequence des block standard ****/
-	_blockoccurancy = new BBox(BRect(315,10,610,465),"block-occurancy");	
+	_blockoccurancy = new BBox("block-occurancy");	
 	_blockoccurancy->SetLabel(" Block Occurancy ");
-	AddChild(_blockoccurancy);
+	//AddChild(_blockoccurancy);
 
 	// ajout des Controle pour saisir les frequences des block standard
-	_blocks_percent[0] = new BTextControl(BRect(110,40,250,50),"block-freq-1","block 1","",new BMessage(U_CHANGE_FREQ_BLOCK));
-	_blocks_percent[1] = new BTextControl(BRect(110,80,250,90),"block-freq-2","block 2","",new BMessage(U_CHANGE_FREQ_BLOCK));
-	_blocks_percent[2] = new BTextControl(BRect(110,120,250,130),"block-freq-3","block 3","",new BMessage(U_CHANGE_FREQ_BLOCK));
-	_blocks_percent[3] = new BTextControl(BRect(110,160,250,170),"block-freq-4","block 4","",new BMessage(U_CHANGE_FREQ_BLOCK));
-	_blocks_percent[4] = new BTextControl(BRect(110,200,250,210),"block-freq-5","block 5","",new BMessage(U_CHANGE_FREQ_BLOCK));
-	_blocks_percent[5] = new BTextControl(BRect(110,240,250,250),"block-freq-6","block 6","",new BMessage(U_CHANGE_FREQ_BLOCK));
-	_blocks_percent[6] = new BTextControl(BRect(110,280,250,290),"block-freq-7","block 7","",new BMessage(U_CHANGE_FREQ_BLOCK));
+	_blocks_percent[0] = new BTextControl("block-freq-1","block 1","",new BMessage(U_CHANGE_FREQ_BLOCK));
+	_blocks_percent[1] = new BTextControl("block-freq-2","block 2","",new BMessage(U_CHANGE_FREQ_BLOCK));
+	_blocks_percent[2] = new BTextControl("block-freq-3","block 3","",new BMessage(U_CHANGE_FREQ_BLOCK));
+	_blocks_percent[3] = new BTextControl("block-freq-4","block 4","",new BMessage(U_CHANGE_FREQ_BLOCK));
+	_blocks_percent[4] = new BTextControl("block-freq-5","block 5","",new BMessage(U_CHANGE_FREQ_BLOCK));
+	_blocks_percent[5] = new BTextControl("block-freq-6","block 6","",new BMessage(U_CHANGE_FREQ_BLOCK));
+	_blocks_percent[6] = new BTextControl("block-freq-7","block 7","",new BMessage(U_CHANGE_FREQ_BLOCK));
 
 	// ajout des controles pour les block speciaux a la vue
 	for(index=0;index<FREQ_BLOCK_NUMBER;index++)
 	{
 		_blocks_percent[index]->SetDivider(70);
-		_blockoccurancy->AddChild(_blocks_percent[index]);
+		//_blockoccurancy->AddChild(_blocks_percent[index]);
 	}
+	
+	BLayoutBuilder::Group<>(_specialoccurancy, B_VERTICAL)
+		.Add(_special_percent[0])
+		.Add(_special_percent[1])
+		.Add(_special_percent[2])
+		.Add(_special_percent[3])
+		.Add(_special_percent[4])
+		.Add(_special_percent[5])
+		.Add(_special_percent[6])
+		.Add(_special_percent[7])
+		.Add(_special_percent[8])
+	.End();
+	
+	BLayoutBuilder::Group<>(_blockoccurancy, B_VERTICAL)
+		.Add(_blocks_percent[0])
+		.Add(_blocks_percent[1])
+		.Add(_blocks_percent[2])
+		.Add(_blocks_percent[3])
+		.Add(_blocks_percent[4])
+		.Add(_blocks_percent[5])
+		.Add(_blocks_percent[6])
+	.End();
+	
+	BLayoutBuilder::Group<>(this, B_HORIZONTAL)
+		.Add(_specialoccurancy)
+		.Add(_blockoccurancy)
+	.End();
+		
 
 	// creer les images
 	_offBlock = new BBitmap(BRect(0,0,31,264),B_RGB32,true);;

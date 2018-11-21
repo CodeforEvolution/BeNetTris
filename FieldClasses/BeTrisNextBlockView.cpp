@@ -9,7 +9,8 @@
 
 /**** constructeur ****/
 BeTrisNextBlockView::BeTrisNextBlockView(BPoint place,char * name)
-: BView(BRect(place.x,place.y,(place.x+BLOCK_VIEW_SIZE),(place.y+BLOCK_VIEW_SIZE)),name, B_FOLLOW_ALL_SIDES, B_WILL_DRAW)
+: BView(/*BRect(place.x,place.y,(place.x+BLOCK_VIEW_SIZE),(place.y+BLOCK_VIEW_SIZE)),*/
+		name, /*B_FOLLOW_ALL_SIDES,*/ B_WILL_DRAW)
 {
 	// initialiser
 	_offBitmap = NULL;

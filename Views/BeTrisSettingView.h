@@ -37,7 +37,7 @@ class BCheckBox;
 class BeTrisSettingView : public BView
 {
 public:
-	BeTrisSettingView(BRect , const char *);
+	BeTrisSettingView(const char *);
 	virtual ~BeTrisSettingView();
 
 	virtual void		AttachedToWindow();						// attachement de la vue

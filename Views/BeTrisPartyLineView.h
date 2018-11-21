@@ -35,7 +35,7 @@ class BeTrisPartyLineView : public BView
 public:
 	BMessenger		winmessenger;
 
-	BeTrisPartyLineView(BRect , const char *);
+	BeTrisPartyLineView(const char *);
 	virtual ~BeTrisPartyLineView();
 
 	virtual void	AttachedToWindow();

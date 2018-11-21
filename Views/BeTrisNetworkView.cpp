@@ -12,8 +12,8 @@
 #include <stdio.h>
 
 /**** constructeur ****/
-BeTrisNetworkView::BeTrisNetworkView(BRect frame, const char *name)
-: BView(frame, name, B_FOLLOW_ALL_SIDES, B_WILL_DRAW)
+BeTrisNetworkView::BeTrisNetworkView(const char *name)
+: BView(name, B_WILL_DRAW)
 {
 	// couleur standard de la vue
 	SetViewColor(U_GRIS_STANDARD);

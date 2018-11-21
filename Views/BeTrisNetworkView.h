@@ -33,7 +33,7 @@
 class BeTrisNetworkView : public BView
 {
 public:
-	BeTrisNetworkView(BRect , const char *);
+	BeTrisNetworkView(const char *);
 	virtual ~BeTrisNetworkView();
 
 	virtual void	AttachedToWindow();

@@ -35,7 +35,7 @@ class BeTrisPlayerView;
 class BeTrisFieldsView : public BView
 {
 public:
-	BeTrisFieldsView(BRect , const char *);
+	BeTrisFieldsView(const char *);
 	virtual ~BeTrisFieldsView();
 
 	virtual void	AttachedToWindow();

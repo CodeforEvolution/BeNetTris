@@ -24,7 +24,7 @@
 
 /**** constructeur ****/
 BeTrisFieldView::BeTrisFieldView(BPoint place,char * name,BeTrisNextBlockView *nextBlockView,BeTrisFieldView::field_type type)
-: BView(SizeOfField(place,type),name, B_FOLLOW_ALL_SIDES, B_WILL_DRAW)
+: BView(/*SizeOfField(place,type),*/name, /*B_FOLLOW_ALL_SIDES,*/ B_WILL_DRAW)
 {
 	BRect		fieldRect;
 

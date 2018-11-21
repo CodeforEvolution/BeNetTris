@@ -16,7 +16,8 @@
 
 /**** constructeur ****/
 BeTrisOptionListView::BeTrisOptionListView(BPoint place,char * name)
-: BView(BRect(place.x,place.y,place.x+(SP_MAX_CAPACITY * 16)+2,place.y+18),name, B_FOLLOW_ALL_SIDES, B_WILL_DRAW)
+: BView(/*BRect(place.x,place.y,place.x+(SP_MAX_CAPACITY * 16)+2,place.y+18),*/
+		name, /*B_FOLLOW_ALL_SIDES,*/ B_WILL_DRAW)
 {
 	BRect	fieldRect;
 

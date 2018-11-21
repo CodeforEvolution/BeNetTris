@@ -15,8 +15,8 @@
 /*******************/
 
 /**** constructeur ****/
-BeTrisWinnerView::BeTrisWinnerView(BRect frame, const char *name)
-: BView(frame, name, B_FOLLOW_ALL_SIDES, B_WILL_DRAW)
+BeTrisWinnerView::BeTrisWinnerView(const char *name)
+: BView(name, B_WILL_DRAW)
 {
 	// initialiser
 	_winners = NULL;

@@ -15,6 +15,7 @@
 #include "BeTrisNetworkView.h"
 #include "BeTrisBlockFreqView.h"
 
+#include <LayoutBuilder.h>
 #include <Messenger.h>
 #include <OS.h>
 
@@ -23,44 +24,44 @@ BeTrisWindow		*g_BeTrisWindow = NULL;
 
 /**** constructeur ****/
 BeTrisWindow::BeTrisWindow(BRect frame)
-: BWindow(frame,"BeNetTris", B_TITLED_WINDOW, B_NOT_RESIZABLE | B_NOT_ZOOMABLE)
+: BWindow(frame,"BeNetTris", B_TITLED_WINDOW,
+			B_AUTO_UPDATE_SIZE_LIMITS | B_NOT_RESIZABLE | B_NOT_ZOOMABLE)
 {
-	BRect		tabviewrect;
-	
 	// initialiser
 	g_BeTrisWindow = this;
 	
 	/*** on construit la vue support de la tabview ****/
-	_pSupportView = new BView(Bounds(),"support-view", B_FOLLOW_ALL_SIDES, B_WILL_DRAW);
+	_pSupportView = new BView("support-view", B_WILL_DRAW);
 
-	_pBeTrisTabView = new CTabView(Bounds(),"BeTrisTabView");
-	tabviewrect = _pBeTrisTabView->Bounds();
-	tabviewrect.bottom -= _pBeTrisTabView->TabHeight();
+	_pBeTrisTabView = new CTabView("BeTrisTabView");
 
 	/*** le about ***/	
-	_aboutView = new BeTrisAboutView(tabviewrect,"About");
+	_aboutView = new BeTrisAboutView("About");
 	_pBeTrisTabView->AddTab(_aboutView);
 	/*** le plateau de jeu ***/
-	_fieldsView = new BeTrisFieldsView(tabviewrect,"Fields");
+	_fieldsView = new BeTrisFieldsView("Fields");
 	_pBeTrisTabView->AddTab(_fieldsView);
 	/*** l'IRC ***/
-	_partyLineView = new BeTrisPartyLineView(tabviewrect,"PartyLine");
+	_partyLineView = new BeTrisPartyLineView("PartyLine");
 	_pBeTrisTabView->AddTab(_partyLineView);
 	/*** la liste des scores ***/
-	_winnerView = new BeTrisWinnerView(tabviewrect,"Winner");
+	_winnerView = new BeTrisWinnerView("Winner");
 	_pBeTrisTabView->AddTab(_winnerView);
 	/*** les preferences ***/
-	_settingView = new BeTrisSettingView(tabviewrect,"Settings");
+	_settingView = new BeTrisSettingView("Settings");
 	_pBeTrisTabView->AddTab(_settingView);
 	/*** le reseau (Client/Serveur) ***/
-	_networkView = new BeTrisNetworkView(tabviewrect,"Network");
+	_networkView = new BeTrisNetworkView("Network");
 	_pBeTrisTabView->AddTab(_networkView);
 	/*** vue de configuration des blocs ***/
-	_blockView = new BeTrisBlockFreqView(tabviewrect,"Blocks");
+	_blockView = new BeTrisBlockFreqView("Blocks");
 	_pBeTrisTabView->AddTab(_blockView);
 
 	_pSupportView->AddChild(_pBeTrisTabView);
-	AddChild(_pSupportView);
+	
+	BLayoutBuilder::Group<>(this)
+		.Add(_pSupportView)
+	.End();
 }
 
 /**** destructeur ****/

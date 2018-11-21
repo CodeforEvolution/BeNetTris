@@ -7,7 +7,7 @@
 #include <stdio.h>
 
 BeTrisPlayerView::BeTrisPlayerView(BPoint place,char * name,BeTrisPlayerView::field_type type)
-: BView(SizeOfField(place,type),name,B_FOLLOW_ALL_SIDES, B_WILL_DRAW)
+: BView(/*SizeOfField(place,type),*/name,/*B_FOLLOW_ALL_SIDES,*/ B_WILL_DRAW)
 {
 	// initialiser
 	_playerExist = false;

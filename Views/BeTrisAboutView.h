@@ -10,7 +10,7 @@ class BBitmap;
 class BeTrisAboutView : public BView
 {
 public:
-	BeTrisAboutView(BRect , const char *);
+	BeTrisAboutView(const char *);
 	virtual ~BeTrisAboutView();
 	virtual	void	Draw(BRect updaterect);
 	virtual void	MouseDown(BPoint point);

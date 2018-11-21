@@ -19,7 +19,7 @@ class CPreferenceFile;
 class BeTrisWinnerView : public BView
 {	
 public:
-	BeTrisWinnerView(BRect , const char *);
+	BeTrisWinnerView(const char *);
 	virtual ~BeTrisWinnerView();
 	
 	virtual void	AttachedToWindow();
